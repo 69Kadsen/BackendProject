@@ -70,6 +70,15 @@ async def get_document_by_name(collection_name, document_name):
         document["_id"] = str(document["_id"])
     return document
 
+# by username
+
+async def get_document_by_username(collection_name, document_name):
+    collection = await get_collection(collection_name)
+    document = await collection.find_one({"username": document_name})
+    if document:
+        document["_id"] = str(document["_id"])
+    return document
+
 # by Sport
 
 async def get_document_by_sport(collection_name, document_sport):

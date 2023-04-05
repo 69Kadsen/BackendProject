@@ -36,7 +36,7 @@ async def get_rollbot_by_name(sport, collection_name: str = collection_name):
     return ErrorResponseModel("Error", 404, "Something went wrong retrieved from db")
 
 @sports.post("/sports/")
-async def add_sport_data(collection_name: str = collection_name, sport: SportSchema = Body(...)):
+async def add_sport_data(collection_name: str = collection_name, sport: ShareSchema = Body(...)):
     sport_data = jsonable_encoder(sport)
     new_sport = await create_document(collection_name, sport_data)
     print(new_sport)

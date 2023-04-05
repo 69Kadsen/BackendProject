@@ -2,6 +2,15 @@ import requests
 from collections import defaultdict
 import json
 
+
+
+def recursive_lower_keys(d):
+    # convert all keys and keys in sub dicts to lowercase
+    if isinstance(d, dict):
+        return {k.lower(): recursive_lower_keys(v) for k, v in d.items()}
+    else:
+        return d
+
 all_bots = []
 x = 9990
 
@@ -42,7 +51,9 @@ while x < 10000:
 
     x += 1
 
-    bot_data_dict = {k.lower(): v for k, v in bot_data_dict.items()}
+    bot_data_dict = recursive_lower_keys(bot_data_dict)
+
+    #bot_data_dict = {k.lower(): v for k, v in bot_data_dict.items()}
 
     all_bots.append(bot_data_dict)
 

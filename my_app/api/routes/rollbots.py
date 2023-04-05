@@ -1,7 +1,11 @@
 
 from datetime import datetime, timedelta
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, Body, Depends
 from fastapi.encoders import jsonable_encoder
+from typing import Annotated
+
+
+from api.dependencies import oauth2_scheme
 
 from api.models.rollbots import *
 from api.models.util import *
@@ -21,7 +25,7 @@ collection_name = "rollbots"
 
 
 @rollbots.get("/rollbot/")
-async def get_rollbots(collection_name: str = collection_name):
+async def get_rollbots(token: Annotated[str, Depends(oauth2_scheme)], collection_name: str = collection_name):
     rollbots = await get_documents(collection_name)
     if rollbots:
         return ResponseModel(rollbots, "Rollbots successfulyl retrieved from db")
