@@ -5,7 +5,7 @@ from fastapi.encoders import jsonable_encoder
 from typing import Annotated
 
 
-from api.dependencies import oauth2_scheme
+from api.routes.auth import oauth2_scheme
 
 from api.models.rollbots import *
 from api.models.util import *

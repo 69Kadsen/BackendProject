@@ -4,7 +4,7 @@ from decouple import config
 import motor.motor_asyncio
 
 MONGO_DETAILS = config("MONGO_DETAILS")
-MONGO_DB_NAME = "sportshare"
+MONGO_DB_NAME = "testing"
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS, serverSelectionTimeoutMS=5000)
 

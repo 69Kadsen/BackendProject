@@ -35,3 +35,5 @@ class SportbotSchema(BaseModel):
                 "traits": {"sport": "Boxing", "background": "purple", "body": "gold", "eyes": "rusty-eyes", "teeth": "rusty-mouth"}
             }
         }
+
+

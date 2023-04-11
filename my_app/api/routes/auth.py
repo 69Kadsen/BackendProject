@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from fastapi import APIRouter, Body, HTTPException, Depends
+from fastapi import APIRouter, Body, HTTPException, Depends, Header, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
@@ -18,7 +18,7 @@ from ..db_helper import (
     get_document_by_username,
 )
 
-SECRET_KEY = "<your_secret_key>"
+SECRET_KEY = "secret_key"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -55,8 +55,30 @@ def create_access_token(data: dict, expires_delta: timedelta):
     to_encode = data.copy()
     expire = datetime.utcnow() + expires_delta
     to_encode.update({"exp": expire})
+    username = to_encode["sub"]
+    to_encode.update({"username": username})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
+
+
+async def get_current_user(token: str = Header(...)):
+    if not token:
+        raise HTTPException(status_code=401, detail="No token")
+    print("Getting current user...")
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload["username"]
+        if username is None:
+            raise HTTPException(status_code=401, detail="Invalid authentication credentials")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid authentication credentials")
+    
+    user = await get_user_by_name(username)
+    print(user)
+    if user is None:
+        raise HTTPException(status_code=401, detail="User not found")
+    
+    return user
 
 
 @auth.post("/register")
@@ -79,7 +101,16 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     if not verify_password(form_data.password, user["hashed_password"]):
         raise HTTPException(status_code=400, detail="Invalid username or password 2")
     access_token = create_access_token(
-        data={"sub": user["username"], "scopes": []},
+        data={"sub": user["username"]},
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
-    return {"access_token": access_token }
+
+    return {"token": access_token }
+
+
+@auth.get("/users/me")
+async def get_current_user_me(current_user: UserSchema = Depends(get_current_user)):
+
+    print(current_user)
+
+    return current_user
