@@ -6,8 +6,8 @@ from fastapi.encoders import jsonable_encoder
 from pydantic import parse_obj_as
 from typing import Dict, Any
 
-from api.models.user import *
-from api.models.util import *
+from api.schemas.user import *
+from api.schemas.util import *
 
 from ..db_helper import (
     create_document,
@@ -17,6 +17,9 @@ from ..db_helper import (
     get_documents,
     get_document_by_username,
     update_user_by_username,
+    create_user_inv,
+    update_user_inventory_by_username,
+    get_user_inv,
 )
 
 import json
@@ -36,7 +39,7 @@ async def get_user(collection_name: str = collection_name):
 
 
 @user.get("/user/{name}")
-async def get_user_by_name(username, collection_name: str = collection_name):
+async def get_user_by_name(username: str, collection_name: str = collection_name):
     user = await get_document_by_username(collection_name, username)
     if user:
         return ResponseModel(user, "Successfully retrived User {} from DB".format(username))
@@ -51,19 +54,62 @@ async def add_user_data(collection_name: str = collection_name, user: UserSchema
     return ResponseModel(new_user, "User added succesfully")
 
 
-
-# Inventory
-
-@user.put("/user/{username}/inventory")
-async def add_item_to_inventory(username : str, item: InventorySchema, collection_name: str = collection_name):
+@user.put("/user/{username}")
+async def update_user_data(username, update_data: ReadUserSchema, collection_name: str = collection_name):
 
     user = await get_document_by_username(collection_name, username)
     if user is None:
         return {"User not found"}
 
-    updated_user = await update_user_by_username(collection_name, user["username"] , item)
+    updated_user = await update_user_by_username(collection_name, user["username"] , update_data)
+    if updated_user is None:
+        return {"update failed"}
+
+    return updated_user
+
+
+
+# Inventory
+
+
+@user.get("/user/{username}/inventory")
+async def get_inventory(username: str, collection_name: str = collection_name):
+
+    user = await get_document_by_username(collection_name, username)
+    if user is None:
+        return {"User not found"}
+    
+    get_inv = await get_user_inv(collection_name, user["username"])
+    if get_inv is None:
+        return {"Inventory get is none"}
+    
+    return get_inv
+
+
+@user.post("/user/{username}/inventory")
+async def add_inventory(username: str, inventory: InventorySchema, collection_name: str = collection_name):
+
+    user = await get_document_by_username(collection_name, username)
+    if user is None:
+        return {"User not found"}
+
+    post_inv = await create_user_inv(collection_name, user["username"], inventory)
+    if post_inv is None:
+        return {"Inv post failed"}
+    
+    return user, post_inv
+
+
+@user.put("/user/{username}/inventory")
+async def add_item_to_inventory(username : str, bot_number: int, item: InventorySchema, collection_name: str = collection_name):
+
+    user = await get_document_by_username(collection_name, username)
+    if user is None:
+        return {"User not found"}
+
+    updated_user = await update_user_inventory_by_username(collection_name, user["username"], item, bot_number)
     if updated_user is None:
         return {"update failed"}
 
 
-    return user, updated_user
+    return updated_user

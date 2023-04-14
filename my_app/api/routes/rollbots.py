@@ -7,8 +7,8 @@ from typing import Annotated
 
 from api.routes.auth import oauth2_scheme
 
-from api.models.rollbots import *
-from api.models.util import *
+from api.schemas.rollbots import *
+from api.schemas.util import *
 
 from ..db_helper import (
     create_document,

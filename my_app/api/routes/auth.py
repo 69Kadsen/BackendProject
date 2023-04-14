@@ -6,8 +6,8 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 
-from api.models.user import *
-from api.models.util import *
+from api.schemas.user import *
+from api.schemas.util import *
 
 from ..db_helper import (
     create_document,

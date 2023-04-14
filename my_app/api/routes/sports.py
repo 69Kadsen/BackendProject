@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
-from api.models.share import *
-from api.models.util import *
+from api.schemas.share import *
+from api.schemas.util import *
 
 from ..db_helper import (
     create_document,

@@ -19,10 +19,10 @@ class UserSchema(BaseModel):
     username: str
     email: EmailStr | None = None
     hashed_password: str
-    created_at: str | None = None
-    inventory: List[InventorySchema] = []
+    created_at: datetime | None = None
     status: str | None = None
     disabled: bool | None = None
+    inventory: List[InventorySchema] = []
 
     class Config:
         schema_extra = {
@@ -90,4 +90,15 @@ class UserSchema(BaseModel):
             }
         }
 
+class UpdateUserSchema(BaseModel):
+    username: Optional[str]
+    email: Optional[EmailStr]
+    hashed_password: Optional[str]
+    created_at: Optional[datetime]
+    status: Optional[str]
+    disabled: Optional[bool]
     
+
+
+class ReadUserSchema(UpdateUserSchema):
+    pass
