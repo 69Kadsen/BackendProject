@@ -37,3 +37,10 @@ class SportbotSchema(BaseModel):
         }
 
 
+class UpdateSportBotSchema(BaseModel):
+    name: Optional[str]
+    number: Optional[int]
+    image_url: Optional[str]
+    revealed: Optional[bool]
+    stats: Optional[StatsSchema]
+    traits: Optional[StatsSchema]

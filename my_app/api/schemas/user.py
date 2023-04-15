@@ -2,7 +2,7 @@ from typing import Optional, List
 from pydantic import BaseModel, Field, EmailStr
 from datetime import date, datetime, timedelta
 
-from .sportbots import SportbotSchema
+from .sportbots import SportbotSchema, UpdateSportBotSchema
 
 
 class InventorySchema(BaseModel):
@@ -13,6 +13,16 @@ class InventorySchema(BaseModel):
     value: float | None = None
     buy_price: float | None = None
     unlocks_in: datetime | None = None
+
+
+class UpdateInventorySchema(BaseModel):
+    bot_number: Optional[int]
+    bot: Optional[UpdateSportBotSchema]
+    claimed: Optional[bool]
+    claimed_at: Optional[datetime]
+    value: Optional[float]
+    buy_price: Optional[float]
+    unlocks_in: Optional[datetime]
 
 
 class UserSchema(BaseModel):
@@ -31,6 +41,8 @@ class UserSchema(BaseModel):
                 "email": "johndoe@example.com",
                 "hashed_password": "somehash",
                 "created_at": "2022-01-01T00:00:00Z",
+                "status": "active",
+                "disabled": False,
                 "inventory": [
                     {
                         "bot_number": 1,
@@ -85,8 +97,6 @@ class UserSchema(BaseModel):
                         "unlocks_in": "2022-03-15T08:00:00Z",
                     }
                 ],
-                "status": "active",
-                "disabled": False
             }
         }
 

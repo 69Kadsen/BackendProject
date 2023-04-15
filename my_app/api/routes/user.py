@@ -46,12 +46,12 @@ async def get_user_by_name(username: str, collection_name: str = collection_name
     return ErrorResponseModel("Error", 404, "Something went wrong retrieved from db")
 
 
-@user.post("/user/")
-async def add_user_data(collection_name: str = collection_name, user: UserSchema = Body(...)):
-    user = jsonable_encoder(user)
-    new_user = await create_document(collection_name, user)
-    print(new_user)
-    return ResponseModel(new_user, "User added succesfully")
+# @user.post("/user/")
+# async def add_user_data(collection_name: str = collection_name, user: UserSchema = Body(...)):
+#     user = jsonable_encoder(user)
+#     new_user = await create_document(collection_name, user)
+#     print(new_user)
+#     return ResponseModel(new_user, "User added succesfully")
 
 
 @user.put("/user/{username}")
@@ -88,7 +88,7 @@ async def get_inventory(username: str, collection_name: str = collection_name):
 
 @user.post("/user/{username}/inventory")
 async def add_inventory(username: str, inventory: InventorySchema, collection_name: str = collection_name):
-
+    inventory = jsonable_encoder(inventory)
     user = await get_document_by_username(collection_name, username)
     if user is None:
         return {"User not found"}
@@ -101,13 +101,15 @@ async def add_inventory(username: str, inventory: InventorySchema, collection_na
 
 
 @user.put("/user/{username}/inventory")
-async def add_item_to_inventory(username : str, bot_number: int, item: InventorySchema, collection_name: str = collection_name):
+async def add_item_to_inventory(username : str, item: UpdateInventorySchema, collection_name: str = collection_name):
+
+    print(item)
 
     user = await get_document_by_username(collection_name, username)
     if user is None:
         return {"User not found"}
 
-    updated_user = await update_user_inventory_by_username(collection_name, user["username"], item, bot_number)
+    updated_user = await update_user_inventory_by_username(collection_name, user["username"], item)
     if updated_user is None:
         return {"update failed"}
 
