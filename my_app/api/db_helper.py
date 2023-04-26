@@ -1,4 +1,4 @@
-from .database import rollbots_collection, sportbots_collection, share_collection, user_collection as db
+from .database import client, MONGO_DB_NAME
 from datetime import datetime, date
 from pymongo import ReturnDocument
 from typing import Dict, Any
@@ -63,8 +63,7 @@ def share_helper(sport) -> dict:
 
 # DB Helper
 async def get_collection(collection_name):
-    collection = db[collection_name]
-    return collection
+    return client[MONGO_DB_NAME][collection_name]
 
 
 async def create_document(collection_name, document):

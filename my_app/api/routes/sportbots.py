@@ -2,6 +2,8 @@
 from datetime import datetime, timedelta
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.encoders import jsonable_encoder
+from json import JSONDecodeError
+
 
 from api.schemas.sportbots import *
 from api.schemas.util import *
@@ -18,7 +20,7 @@ from ..db_helper import (
 
 sportbots = APIRouter()
 
-collection_name = "sportbots"
+collection_name = "sportbots_collection"
 
 
 @sportbots.get("/sportbots/")
