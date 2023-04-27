@@ -1,17 +1,22 @@
 import {FaBars, FaTimes} from "react-icons/fa";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import "../Styles/main.css";
 import { NavLink } from "react-router-dom";
 
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
     const navRef = useRef();
 
     const showNavbar = () => {
         navRef.current.classList.toggle("responsive_nav")
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+    }
+    
   return (
     <>
         <header>
@@ -20,9 +25,13 @@ const Navbar = () => {
                 <NavLink className="link" to='/'>
                     Home
                 </NavLink>
-                <NavLink className="link" to='/login'>
+                {isAuthenticated ? (
+                    <button onClick={handleLogout}>Logout</button>
+                ) : (
+                    <NavLink className="link" to='/login'>
                     Login
-                </NavLink>
+                    </NavLink>
+                )}
                 <NavLink className="link" to='/register'>
                     Register
                 </NavLink>

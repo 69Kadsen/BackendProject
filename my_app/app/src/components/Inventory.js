@@ -54,7 +54,7 @@ const Inventory = () => {
             body: item
         };
 
-        const response = await fetch("https://69kadsen-glorious-memory-5wv4wwxj6p6cpxr6-8000.preview.app.github.dev/api/user/{user.username}/inventory", requestOptions);
+        const response = await fetch("https://69kadsen-glorious-memory-5wv4wwxj6p6cpxr6-8000.preview.app.github.dev/api/user/{userData.username}/inventory", requestOptions);
 
         if (response.ok) {
             const user = await response.json();
@@ -68,13 +68,12 @@ const Inventory = () => {
     if (user.inventory) {
 
         const inventoryList = Array.isArray(inventory) ? inventory.map((item, index) => (
-            <>
-            <li key={index}>{item.bot.name}</li>
-            <li key={index}>{item.bot.number}</li>
-            <div>I am something</div>
-            <button>Try me</button>
-            </>
-
+            <div key={index}>
+                <li>{item.bot.name}</li>
+                <li>{item.bot.number}</li>
+                <div>I am something</div>
+                <button>Try me</button>
+            </div>
         )) : null;
 
     return (

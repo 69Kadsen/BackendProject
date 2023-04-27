@@ -10,6 +10,7 @@ const Login = () => {
   const [flashMessageType, setFlashMessageType] = useState("");
   const navigate = useNavigate();
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -81,5 +82,6 @@ const Login = () => {
     </div>
   );
 };
+
 
 export default Login;
