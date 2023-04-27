@@ -69,10 +69,9 @@ const Inventory = () => {
 
         const inventoryList = Array.isArray(inventory) ? inventory.map((item, index) => (
             <div key={index}>
-                <li>{item.bot.name}</li>
-                <li>{item.bot.number}</li>
-                <div>I am something</div>
-                <button>Try me</button>
+                {/* <li>{item.bot.name}</li>
+                <li>{item.bot.number}</li> */}
+                <li>{item.bot_number}</li>
             </div>
         )) : null;
 
@@ -80,40 +79,6 @@ const Inventory = () => {
         <>
             <h2>Inventory</h2>
             <ul>{inventoryList}</ul>
-            <h2>Add entry:</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                Bot Number:
-                <input
-                    type="number"
-                    name="bot_number"
-                    value={newItem.bot_number || ""}
-                    onChange={handleInputChange}
-                />
-                </label>
-                <br />
-                <label>
-                Claimed:
-                <select name="claimed" value={newItem.claimed || ""} onChange={handleInputChange}>
-                    <option value="">Select</option>
-                    <option value={true}>Yes</option>
-                    <option value={false}>No</option>
-                </select>
-                </label>
-                <br />
-                <label>
-                Value:
-                <input
-                    type="number"
-                    name="value"
-                    value={newItem.value || ""}
-                    onChange={handleInputChange}
-                />
-                </label>
-                <br />
-                <button type="submit">Add</button>
-            </form>
-
         </>
     );
     };
