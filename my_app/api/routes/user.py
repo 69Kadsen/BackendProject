@@ -20,6 +20,7 @@ from ..db_helper import (
     create_user_inv,
     update_user_inventory_by_username,
     get_user_inv,
+    delete_item_from_user_inventory,
 )
 
 import json
@@ -115,3 +116,18 @@ async def add_item_to_inventory(username : str, item: UpdateInventorySchema, col
 
 
     return updated_user
+
+
+@user.delete("/user/{username}/inventory")
+async def delete_item_from_inventory(username: str, item_number: int, collection_name: str = collection_name):
+    print(item_number)
+
+    user = await get_document_by_username(collection_name, username)
+    if user is None:
+        return {"User not found"}
+    
+    deleted_item = await delete_item_from_user_inventory(collection_name, user["username"], item_number)
+    if deleted_item is None:
+        return {"Delelte item failed"}
+    
+    return deleted_item
