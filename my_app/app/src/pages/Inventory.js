@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Inventory from "../components/Inventory";
 import AddBot from "../components/AddInventoryBot";
 
+
 const InventoryPage = () => {
+
     return(
         <div>
-            <h1>Portfolio Page</h1>
-            <Inventory />
-            <AddBot />
+            <h1>Inventory Page</h1>
+            <Inventory/>
+            
         </div>
     );
 };

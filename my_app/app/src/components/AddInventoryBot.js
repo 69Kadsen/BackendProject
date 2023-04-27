@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const InventoryUpdateForm = () => {
+const InventoryUpdateForm = ({ addInventoryEntry }) => {
     const token = localStorage.getItem("token");
     const [user, setUser] = useState();
 
@@ -117,7 +117,10 @@ const InventoryUpdateForm = () => {
         console.log(response)
         .then((response) => {
           if (response.ok) {
+            addInventoryEntry(bot);
             console.log(response);
+
+            e.target.bot_number.value = "";
           }
         })
         .catch((error) => {
@@ -127,6 +130,7 @@ const InventoryUpdateForm = () => {
 
       return (
         <div>
+          <h1>Add a Bot to the Inventory:</h1>
           <form onSubmit={handleSubmit}>
             <label>
               Bot_number:
