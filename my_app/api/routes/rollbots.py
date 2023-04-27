@@ -21,7 +21,7 @@ from ..db_helper import (
 
 rollbots = APIRouter()
 
-collection_name = "rollbots"
+collection_name = "rollbots_collection"
 
 
 @rollbots.get("/rollbot/")

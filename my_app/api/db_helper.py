@@ -290,6 +290,20 @@ async def update_user_inventory_by_username(collection_name: str, username: str,
 
         if "value" in update_data and update_data["value"] is not None:
             new_data["value"] = update_data["value"]
+
+        if "claimed" in update_data and update_data["claimed"] is not None:
+            new_data["claimed"] = update_data["claimed"]
+
+        if "claimed_at" in update_data and update_data["claimed_at"] is not None:
+            new_data["claimed_at"] = update_data["claimed_at"]
+
+        if "buy_price" in update_data and update_data["buy_price"] is not None:
+            new_data["buy_price"] = update_data["buy_price"]
+
+        if "unlocks_in" in update_data and update_data["unlocks_in"] is not None:
+            new_data["unlocks_in"] = update_data["unlocks_in"]
+
+        
     
         query = {"username": username}
         update_data = {"$set": {"inventory.$[i]": new_data}}

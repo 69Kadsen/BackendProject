@@ -20,7 +20,7 @@ from ..db_helper import (
 
 sports = APIRouter()
 
-collection_name = "sports"
+collection_name = "sports_collection"
 
 # Sports
 

@@ -28,7 +28,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 auth = APIRouter()
 
-collection_name = "user"
+collection_name = "user_collection"
 
 
 async def add_user_data(collection_name: str = collection_name, user: UserSchema = Body(...)):

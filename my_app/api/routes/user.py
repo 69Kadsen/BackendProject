@@ -27,7 +27,7 @@ from bson.objectid import ObjectId
 
 user = APIRouter()
 
-collection_name = "user"
+collection_name = "user_collection"
 
 
 @user.get("/user/")

@@ -43,4 +43,4 @@ class UpdateSportBotSchema(BaseModel):
     image_url: Optional[str]
     revealed: Optional[bool]
     stats: Optional[StatsSchema]
-    traits: Optional[StatsSchema]
+    traits: Optional[TraitsSchema]
