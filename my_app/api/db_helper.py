@@ -326,6 +326,29 @@ async def update_user_inventory_by_username(collection_name: str, username: str,
 
         # result = await collection.update_one({"username": username}, {"$push": {"inventory": update_data}})
         return {"User inventory entry added"}
+    
+
+# delete inventory item
+
+async def delete_item_from_user_inventory(collection_name: str, username: str, item_number: int):
+    collection = await get_collection(collection_name)
+    
+    user_inv = await get_user_inv(collection_name, username)
+
+    for x in user_inv:
+        if x["bot_number"] == item_number:
+            result = await collection.update_one(
+                {"username": username},
+                {"$pull": {"inventory": {"bot_number": item_number}}}
+            )
+
+            if result.modified_count == 1:
+                return {"deleted bot number", item_number}
+
+            return {"Did not find bot with number", item_number}
+
+    return {"Something went wrong"}
+
 
 
 

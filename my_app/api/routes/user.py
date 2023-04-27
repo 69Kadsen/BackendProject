@@ -118,7 +118,7 @@ async def add_item_to_inventory(username : str, item: UpdateInventorySchema, col
     return updated_user
 
 
-@user.delete("/user/{username}/inventory")
+@user.delete("/user/{username}/inventory/{item_number}")
 async def delete_item_from_inventory(username: str, item_number: int, collection_name: str = collection_name):
     print(item_number)
 
