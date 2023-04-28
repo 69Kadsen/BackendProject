@@ -17,5 +17,5 @@ RUN npm run build
 # Serve the application using a lightweight web server
 FROM nginx:1.21.0-alpine
 COPY --from=0 /app/build /usr/share/nginx/html
-EXPOSE 3000
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

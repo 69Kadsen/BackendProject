@@ -16,8 +16,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 origins = [
-    "https://69kadsen-glorious-memory-5wv4wwxj6p6cpxr6-3000.preview.app.github.dev",
-    "https://69kadsen-glorious-memory-5wv4wwxj6p6cpxr6-8000.preview.app.github.dev",
+    "http://localhost:80",
+    "http://localhost:3000",
+    "http://localhost:8000",
 ]
 
 app.add_middleware(

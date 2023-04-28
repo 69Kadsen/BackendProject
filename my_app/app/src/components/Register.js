@@ -22,7 +22,7 @@ const Register = () => {
             body: JSON.stringify({ username: username, email: email, hashed_password: password}),
         };
 
-        const response = await fetch('https://69kadsen-glorious-memory-5wv4wwxj6p6cpxr6-8000.preview.app.github.dev/api/register', requestOptions);
+        const response = await fetch('http://localhost:8000/api/register', requestOptions);
         const data = await response.json();
 
         if (!response.ok) {
