@@ -13,19 +13,19 @@ const Inventory = () => {
         bot: {
             name: "",
             number: 0,
-            image_url: "",
-            revealed: true,
+            // image_url: "",
+            // revealed: true,
             stats: {
-            sportshares: 0,
+            // sportshares: 0,
             freebet: 0,
-            comboboost: 0
+            // comboboost: 0
             },
             traits: {
             sport: "",
-            background: "",
-            body: "",
-            eyes: "",
-            teeth: ""
+            // background: "",
+            // body: "",
+            // eyes: "",
+            // teeth: ""
             }
         },
         // claimed: true,
@@ -102,20 +102,20 @@ const Inventory = () => {
             ...bot.bot,
             name: e.target.name.value,
             number: e.target.number.value,
-            image_url: e.target.image_url.value,
+            // image_url: e.target.image_url.value,
             stats: {
               ...bot.bot.stats,
-              sportshares: e.target.sportshares.value,
+              // sportshares: e.target.sportshares.value,
               freebet: e.target.freebet.value,
-              comboboost: e.target.comboboost.value
+              // comboboost: e.target.comboboost.value
             },
             traits: {
               ...bot.bot.traits,
               sport: e.target.sport.value,
-              background: e.target.background.value,
-              body: e.target.body.value,
-              eyes: e.target.eyes.value,
-              teeth: e.target.teeth.value
+              // background: e.target.background.value,
+              // body: e.target.body.value,
+              // eyes: e.target.eyes.value,
+              // teeth: e.target.teeth.value
             }
           }
         });
@@ -191,27 +191,27 @@ const Inventory = () => {
               Number:
               <input type="number" name="number"  onChange={(e) => handleChange(e, setBot, bot.bot.number)} />
             </label>
-            <label>
+            {/* <label>
               Image URL:
               <input type="text" name="image_url"  onChange={(e) => handleChange(e, setBot, bot.bot.image_url)} />
-            </label>
-            <label>
+            </label> */}
+            {/* <label>
               Sport Shares:
               <input type="number" name="sportshares"  onChange={(e) => handleChange(e, setBot, bot.bot.stats.sportshares)}/>
-            </label>
+            </label> */}
             <label>
               Free Bet:
               <input type="number" name="freebet"  onChange={(e) => handleChange(e, setBot, bot.bot.stats.freebet)} />
             </label>
-            <label>
+            {/* <label>
               Combo Boost:
               <input type="number" name="comboboost"  onChange={(e) => handleChange(e, setBot, bot.bot.stats.comboboost)} />
-            </label>
+            </label> */}
             <label>
               Sport:
               <input type="text" name="sport"  onChange={(e) => handleChange(e, setBot, bot.bot.traits.sport)}/>
             </label>
-            <label>
+            {/* <label>
               Background:
               <input type="text" name="background" onChange={(e) => handleChange(e, setBot, bot.bot.traits.background)} />
             </label>
@@ -226,7 +226,7 @@ const Inventory = () => {
             <label>
               Teeth:
               <input type="text" name="teeth"  onChange={(e) => handleChange(e, setBot, bot.bot.traits.eyes)}/>
-            </label>
+            </label> */}
             <label>
               <input type="submit" value="Submit" />
             </label>
@@ -254,27 +254,27 @@ const Inventory = () => {
               Number:
               <input type="number" name="number"  onChange={(e) => handleChange(e, setBot, bot.bot.number)} />
             </label>
-            <label>
+            {/* <label>
               Image URL:
               <input type="text" name="image_url"  onChange={(e) => handleChange(e, setBot, bot.bot.image_url)} />
-            </label>
-            <label>
+            </label> */}
+            {/* <label>
               Sport Shares:
               <input type="number" name="sportshares"  onChange={(e) => handleChange(e, setBot, bot.bot.stats.sportshares)}/>
-            </label>
+            </label> */}
             <label>
               Free Bet:
               <input type="number" name="freebet"  onChange={(e) => handleChange(e, setBot, bot.bot.stats.freebet)} />
             </label>
-            <label>
+            {/* <label>
               Combo Boost:
               <input type="number" name="comboboost"  onChange={(e) => handleChange(e, setBot, bot.bot.stats.comboboost)} />
-            </label>
+            </label> */}
             <label>
               Sport:
               <input type="text" name="sport"  onChange={(e) => handleChange(e, setBot, bot.bot.traits.sport)}/>
             </label>
-            <label>
+            {/* <label>
               Background:
               <input type="text" name="background" onChange={(e) => handleChange(e, setBot, bot.bot.traits.background)} />
             </label>
@@ -289,7 +289,7 @@ const Inventory = () => {
             <label>
               Teeth:
               <input type="text" name="teeth"  onChange={(e) => handleChange(e, setBot, bot.bot.traits.eyes)}/>
-            </label>
+            </label> */}
             <label>
               <input type="submit" value="Submit" />
             </label>
