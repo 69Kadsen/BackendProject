@@ -67,19 +67,27 @@ const Inventory = () => {
             ...prevState,
             [name]: value
           }));
+        } else if ( name === "sport" || name === "background" || name === "body" || name === "eyes" || name === "teeth") {
+          setBot((prevState) => ({
+            ...prevState,
+            bot: {
+              ...prevState.bot,
+              traits: {
+                ...prevState.bot.traits,
+                [name]: value,
+               },
+              },
+          }));
         } else {
           setBot((prevState) => ({
             ...prevState,
             bot: {
               ...prevState.bot,
               stats: {
-                ...prevState.bot,
-                traits: {
-                  ...prevState.bot,
-                  [name]: value,
-               }
-              }
-            }
+                ...prevState.bot.stats,
+                [name]: value,
+              },
+            },
           }));
         }
       };
@@ -123,7 +131,8 @@ const Inventory = () => {
         console.log(user.username)
         const response = await fetch("https://69kadsen-glorious-memory-5wv4wwxj6p6cpxr6-8000.preview.app.github.dev/api/user/" + user.username + "/inventory", requestOptions)
         if (response.ok) {
-        setInventory(inventory => [...inventory, bot]);
+            console.log("Adding new item")
+            setInventory(inventory => [...inventory, bot]);
         } else {
             console.error("Failed to update inventory")
         }

@@ -25,15 +25,14 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                 <NavLink className="link" to='/'>
                     Home
                 </NavLink>
-                {isAuthenticated ? (
-                    <button onClick={handleLogout}>Logout</button>
-                ) : (
-                    <NavLink className="link" to='/login'>
-                    Login
-                    </NavLink>
-                )}
                 <NavLink className="link" to='/register'>
                     Register
+                </NavLink>
+                <NavLink className="link" to='/login'>
+                Login
+                </NavLink>
+                <NavLink className="link" onClick={handleLogout} to="/home">
+                    Logout
                 </NavLink>
                 <NavLink className="link" to='/profile'>
                     Profile
