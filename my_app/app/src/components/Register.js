@@ -30,8 +30,7 @@ const Register = () => {
             setFlashMessageType("danger");
             setShowFlashMessage(true);
         } else {
-            navigate('/');
-            setFlashMessage("Registration succesfull");
+            setFlashMessage("Registration succesfull, you may log in now");
             setFlashMessageType("success");
             setShowFlashMessage(true);
         }

@@ -11,14 +11,13 @@ import AllBobsPage from './pages/Allbobs';
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('token') ? true : false);
 
   return (
       <Router>
-        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+        <Navbar/>
           <Routes>
             <Route path='/' exact element={ <Home/> } />
-            <Route path='/login' element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path='/login' element={<LoginPage/>} />
             <Route path='/register' element={ <RegisterPage/> } />
             <Route path='/profile' element={ <ProfilePage/> } />
             <Route path='/inventory' element={ <InventoryPage/>} />

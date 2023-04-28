@@ -24,7 +24,7 @@ const Profile = () => {
 
   if (!user) {
     console.log("User data not found"); // for debugging
-    return <div>Loading user data...</div>;
+    return <div>Not logged in</div>;
   }
 
   console.log(user)

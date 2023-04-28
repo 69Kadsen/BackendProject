@@ -57,7 +57,7 @@ const Inventory = () => {
   
     if (!user) {
       console.log("User data not found"); // for debugging
-      return <div>Loading user data...</div>;
+      return <div>Not logged in</div>;
     }
 
     const handleChange = (e) => {
@@ -157,7 +157,7 @@ const Inventory = () => {
 
     // const values = Object.values(inventory);
 
-    if (user.inventory && user.inventory.length > 0) {
+    if (user.inventory) {
 
         const inventoryList = Array.isArray(inventory) ? inventory.map((item, index) => (
             <div key={index}>
@@ -177,19 +177,18 @@ const Inventory = () => {
         <>  
             <h2>Add inventoy entry:</h2>
             <div>
-          <h1>Add a Bot to the Inventory:</h1>
           <form onSubmit={handleSubmit}>
             <label>
               Bot_number:
-              <input type="number" name="bot_number" defaultValue={bot.bot_number} onChange={(e) => handleChange(e, setBot, bot.bot_number)}  />
+              <input type="number" name="bot_number" placeholder={bot.bot_number} onChange={(e) => handleChange(e, setBot, bot.bot_number)}  />
             </label>
             <label>
               Name:
-              <input type="text" name="name" onChange={(e) => handleChange(e, setBot, bot.bot.name)} />
+              <input type="text" name="name" placeholder="some name" onChange={(e) => handleChange(e, setBot, bot.bot.name)} />
             </label>
             <label>
               Number:
-              <input type="number" name="number"  onChange={(e) => handleChange(e, setBot, bot.bot.number)} />
+              <input type="number" name="number" placeholder={bot.bot.number}  onChange={(e) => handleChange(e, setBot, bot.bot.number)} />
             </label>
             {/* <label>
               Image URL:
@@ -201,7 +200,7 @@ const Inventory = () => {
             </label> */}
             <label>
               Free Bet:
-              <input type="number" name="freebet"  onChange={(e) => handleChange(e, setBot, bot.bot.stats.freebet)} />
+              <input type="number" name="freebet" placeholder={bot.bot.stats.freebet}  onChange={(e) => handleChange(e, setBot, bot.bot.stats.freebet)} />
             </label>
             {/* <label>
               Combo Boost:
@@ -209,7 +208,7 @@ const Inventory = () => {
             </label> */}
             <label>
               Sport:
-              <input type="text" name="sport"  onChange={(e) => handleChange(e, setBot, bot.bot.traits.sport)}/>
+              <input type="text" name="sport" placeholder="some sport" onChange={(e) => handleChange(e, setBot, bot.bot.traits.sport)}/>
             </label>
             {/* <label>
               Background:
@@ -240,7 +239,7 @@ const Inventory = () => {
     } else {
         return <div>No items in inventory <br/>
         <div>
-          <h1>Add a Bot to the Inventory:</h1>
+          <h2>Add a Bot to the Inventory:</h2>
           <form onSubmit={handleSubmit}>
             <label>
               Bot_number:

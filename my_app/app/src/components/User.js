@@ -26,7 +26,7 @@ const User = ({ children }) => {
 
 
     if (!user) {
-        return  <div>Loading user data...</div>;
+        return  <div>Not logged in</div>;
     }
 
     return <UserContext.Provider value={user}>{children}</UserContext.Provider>;

@@ -37,8 +37,7 @@ const Login = () => {
       setFlashMessageType("danger");
       setShowFlashMessage(true);
     } else {
-      navigate('/');
-      setFlashMessage("Registration succesfull");
+      setFlashMessage("Logged in succesfully");
       setFlashMessageType("success");
       setShowFlashMessage(true);
     }
