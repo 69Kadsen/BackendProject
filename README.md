@@ -27,3 +27,8 @@ cd my_app/app
 
 npm run start
 ```
+
+
+# Danger
+The env file is included with the mongoDb connection details.
+(for the examiner)
