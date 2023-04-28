@@ -6,10 +6,10 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 
-from api.schemas.user import *
-from api.schemas.util import *
+from schemas.user import *
+from schemas.util import *
 
-from ..db_helper import (
+from db_helper import (
     create_document,
     get_document_by_id,
     get_document_by_name,
@@ -31,7 +31,9 @@ auth = APIRouter()
 collection_name = "user_collection"
 
 
-async def add_user_data(collection_name: str = collection_name, user: UserSchema = Body(...)):
+async def add_user_data(
+    collection_name: str = collection_name, user: UserSchema = Body(...)
+):
     user = jsonable_encoder(user)
     new_user = await create_document(collection_name, user)
     print(new_user)
@@ -69,15 +71,19 @@ async def get_current_user(token: str = Header(...)):
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload["username"]
         if username is None:
-            raise HTTPException(status_code=401, detail="Invalid authentication credentials")
+            raise HTTPException(
+                status_code=401, detail="Invalid authentication credentials"
+            )
     except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid authentication credentials")
-    
+        raise HTTPException(
+            status_code=401, detail="Invalid authentication credentials"
+        )
+
     user = await get_user_by_name(username)
     print(user)
     if user is None:
         raise HTTPException(status_code=401, detail="User not found")
-    
+
     return user
 
 
@@ -89,7 +95,7 @@ async def register(user: UserSchema):
     print(await get_user_by_name(user_dict["username"]))
     if existing_user:
         raise HTTPException(status_code=400, detail="Username already registered")
-    await add_user_data(user = user_dict)
+    await add_user_data(user=user_dict)
     return {"detail": "User registered successfully"}
 
 
@@ -105,12 +111,11 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
 
-    return {"token": access_token }
+    return {"token": access_token}
 
 
 @auth.get("/users/me")
 async def get_current_user_me(current_user: UserSchema = Depends(get_current_user)):
-
     print(current_user)
 
     return current_user

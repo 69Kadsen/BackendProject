@@ -3,12 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Annotated
 from fastapi.security import OAuth2PasswordBearer
 
-from api.routes.rollbots import rollbots
-from api.routes.sportbots import sportbots
-from api.routes.sports import sports
-from api.routes.share import share
-from api.routes.user import user
-from api.routes.auth import auth
+from routes.rollbots import rollbots
+from routes.sportbots import sportbots
+from routes.sports import sports
+from routes.share import share
+from routes.user import user
+from routes.auth import auth
 
 app = FastAPI()
 
@@ -34,9 +34,6 @@ app.include_router(sports, prefix="/api", tags=["Sports"])
 app.include_router(share, prefix="/api", tags=["Share"])
 app.include_router(user, prefix="/api", tags=["User"])
 app.include_router(auth, prefix="/api", tags=["Auth"])
-
-
-
 
 
 @app.get("/", tags=["Root"])

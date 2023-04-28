@@ -7,7 +7,7 @@ const AllBobs = () => {
   useEffect(() => {
     const fetchSportbots = async () => {
 
-    const response = await fetch('https://69kadsen-glorious-memory-5wv4wwxj6p6cpxr6-8000.preview.app.github.dev/api/sportbots/'); // replace with your API endpoint
+    const response = await fetch('http://localhost:8000/api/sportbots/'); // replace with your API endpoint
     const data = await response.json();
     console.log(data.data[0])
     setSportbots(data.data[0]);

@@ -1,20 +1,19 @@
-
 from datetime import datetime, timedelta
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.encoders import jsonable_encoder
 from json import JSONDecodeError
 
 
-from api.schemas.sportbots import *
-from api.schemas.util import *
+from schemas.sportbots import *
+from schemas.util import *
 
-from ..db_helper import (
+from db_helper import (
     create_document,
     get_document_by_id,
     get_document_by_name,
     get_document_by_sport,
     get_documents,
-    get_sportbot_by_number
+    get_sportbot_by_number,
 )
 
 
@@ -33,14 +32,18 @@ async def get_sportrollbots(collection_name: str = collection_name):
 
 @sportbots.get("/sportbots/{number}")
 async def get_bot_by_number(number: int, collection_name: str = collection_name):
-
     sportbot = await get_sportbot_by_number(collection_name, number)
     if sportbot:
-        return ResponseModel(sportbot, "Successfully retrived Sportbot {} from DB".format(number))
+        return ResponseModel(
+            sportbot, "Successfully retrived Sportbot {} from DB".format(number)
+        )
     return ErrorResponseModel("Error", 404, "Something went wrong retrieved from db")
 
+
 @sportbots.post("/sportbots/")
-async def add_rollbot_data(collection_name: str = collection_name, sportrollbot: SportbotSchema = Body(...)):
+async def add_rollbot_data(
+    collection_name: str = collection_name, sportrollbot: SportbotSchema = Body(...)
+):
     try:
         sportrollbot = jsonable_encoder(sportrollbot)
         print(sportrollbot)

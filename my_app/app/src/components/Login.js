@@ -26,7 +26,7 @@ const Login = () => {
       body: params,
     };
 
-    const response = await fetch("https://69kadsen-glorious-memory-5wv4wwxj6p6cpxr6-8000.preview.app.github.dev/api/token", requestOptions);
+    const response = await fetch("http://localhost:8000/api/token", requestOptions);
     const data = await response.json()
     const token = data.token
     localStorage.setItem("token", token);
