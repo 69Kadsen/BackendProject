@@ -146,8 +146,7 @@ const Inventory = () => {
     };
 
 
-    const values = Object.values(inventory);
-    console.log(values)
+    // const values = Object.values(inventory);
 
     if (user.inventory && user.inventory.length > 0) {
 
