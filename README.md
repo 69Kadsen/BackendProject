@@ -4,6 +4,10 @@ FastAPI application, React frontend, MongoDB database and hosted on DigitalOcean
 
 python 3.10.4
 
+## Project Demo live at: 167.172.166.15
+Hosted on DigitalOcean
+
+
 # Build
 
 ## Docker
