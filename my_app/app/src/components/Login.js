@@ -26,7 +26,7 @@ const Login = () => {
       body: params,
     };
 
-    const response = await fetch("http://localhost:8000/api/token", requestOptions);
+    const response = await fetch("http://167.172.166.15:8000/api/token", requestOptions);
     const data = await response.json()
     const token = data.token
     localStorage.setItem("token", token);

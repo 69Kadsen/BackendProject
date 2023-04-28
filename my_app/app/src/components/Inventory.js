@@ -43,7 +43,7 @@ const Inventory = () => {
                 headers: {"token": token}
             }
   
-            const response = await fetch('http://localhost:8000/api/users/me', requestOptions);
+            const response = await fetch('http://167.172.166.15:8000/api/users/me', requestOptions);
             if (response.ok) {
                 const userData = await response.json();
                 setUser(userData);
@@ -129,7 +129,7 @@ const Inventory = () => {
           body: JSON.stringify(bot),
         };
         console.log(user.username)
-        const response = await fetch("http://localhost:8000/api/user/" + user.username + "/inventory", requestOptions)
+        const response = await fetch("http://167.172.166.15:8000/api/user/" + user.username + "/inventory", requestOptions)
         if (response.ok) {
             console.log("Adding new item")
             setInventory(inventory => [...inventory, bot]);
@@ -145,7 +145,7 @@ const Inventory = () => {
             method: "DELETE",
             headers: { "token": token }
         }
-        const response = await fetch(`http://localhost:8000/api/user/${user.username}/inventory/${botNumber}`, requestOptions);
+        const response = await fetch(`http://167.172.166.15:8000/api/user/${user.username}/inventory/${botNumber}`, requestOptions);
         if (response.ok) {
             // Update the inventory list on the client-side after deletion
             setInventory(inventory.filter((item) => item.bot_number !== botNumber));

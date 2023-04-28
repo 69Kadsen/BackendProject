@@ -7,7 +7,7 @@ const AllBobs = () => {
   useEffect(() => {
     const fetchSportbots = async () => {
 
-    const response = await fetch('http://localhost:8000/api/sportbots/'); // replace with your API endpoint
+    const response = await fetch('http://167.172.166.15:8000/api/sportbots/'); // replace with your API endpoint
     const data = await response.json();
     console.log(data.data[0])
     setSportbots(data.data[0]);

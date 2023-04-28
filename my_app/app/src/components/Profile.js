@@ -12,7 +12,7 @@ const Profile = () => {
               headers: {"token": token}
           }
 
-          const response = await fetch('http://localhost:8000/api/users/me', requestOptions);
+          const response = await fetch('http://167.172.166.15:8000/api/users/me', requestOptions);
           if (response.ok) {
               const userData = await response.json();
               setUser(userData);

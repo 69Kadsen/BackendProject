@@ -16,6 +16,8 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 origins = [
+    "http://167.172.166.15:8000",
+    "http://167.172.166.15:80",
     "http://localhost:80",
     "http://localhost:3000",
     "http://localhost:8000",
