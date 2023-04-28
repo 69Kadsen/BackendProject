@@ -6,7 +6,7 @@ python 3.10.4
 
 # Build
 ---
-To run this project locally, create a local enviroment and execute the following commands.
+To run this project locally, create a local enviroment and use uvicorn to run the app.
 
 1. ## Create Local Enviroment & Install Dependencies
 ```
