@@ -1,11 +1,22 @@
 # Backend Project for the Module
----
+
 FastAPI application, React frontend, MongoDB database and hosted on DigitalOcean.
 
 python 3.10.4
 
 # Build
----
+
+## Docker
+navigate into the directory of the docker compose file.
+```
+docker compose up --build
+```
+Backend running on localhost:8000
+Frontend running on localhost:80
+
+***
+
+## without Docker
 To run this project locally, create a local enviroment and use uvicorn to run the app.
 
 1. ## Create Local Enviroment & Install Dependencies
@@ -19,11 +30,13 @@ pip install -r requirements.txt
 
 2. ## Start Local Server
 ```
-python my_app/main.py
+cd api
+
+python main.py
 ```
 3. ## Start Frontend
 ```
-cd my_app/app
+cd app
 
 npm run start
 ```
